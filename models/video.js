@@ -1,21 +1,37 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const videoSchema = new mongoose.Schema({
-  videoId:{
-    type:String,
-    required:true
-    
-},
-  title: {
-    required: true,
-    type: String,
-  },
-  url: {
-    required: true,
-    type: String,
-  },
-  products: [{ id: { type: Schema.Types.ObjectId, ref: "Product" } }],
+    url_image: {
+        type: String,
+        required: true
+    },
+    products: [{
+        link_product: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: String,
+            required: true
+        },
+        title: {
+            type: String,
+            required: true
+        }
+    }],
+    comments: [{
+        username: {
+            type: String
+        },
+        comment: {
+            type: String
+        },
+        timestamp: {
+            type: Date
+        }
+    }]
 });
 
-const video = mongoose.model('Video', videoSchema)
-export default video;
+const Video = mongoose.model('Video', videoSchema);
+
+module.exports = Video;
